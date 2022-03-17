@@ -1,0 +1,66 @@
+{{>partials/header}}
+
+Opa {{name}} {{lastName}}, tudo bem?
+{{#showOld}}
+    Como vai a vida?
+{{/showOld}}
+{{^showOld}}
+    Beleza?
+{{/showOld}}
+
+<form method="POST" action="/novoUsuario">
+  <label for="fnome">Nome:</label><br>
+  <input type="text" id="fnome" name="fnome"><br>
+  <label for="fidade">Idade:</label><br>
+  <input type="Number" id="fidade" name="fidade"><br><br>
+  <button>Inserir Usuario</button>
+</form>
+
+<hr/>
+<h2>Usuarios</h2>
+<ul>
+
+{{#clientes}}
+<li>
+    {{nome}} - idade {{idade}} 
+    <a href="/usuario/{{id}}/mais">+<a>/
+    <a href="/usuario/{{id}}/menos">-<a>/
+    <a href="/usuario/{{id}}/excluir">excluir<a>
+</li>
+
+{{/clientes}}
+</ul>
+
+<hr>
+
+<h2>Produtos</h2>
+<ul>
+    {{#products}}
+        {{>partials/productItem}}
+    {{/products}}
+</ul>
+
+<hr/>
+<h2>Produtos a partir de R$ 12</h2>
+<ul>
+    {{#expensives}}
+        {{>partials/productItem}}
+    {{/expensives}}
+</ul>
+
+<hr/>
+
+<ul>
+    {{#frasesDoDia}}
+        <li>{{.}}</li>
+    {{/frasesDoDia}}
+    {{^frasesDoDia}}
+        Não há frases motivacionais hoje.
+    {{/frasesDoDia}}
+</ul>
+
+
+
+
+
+{{>partials/footer}}
